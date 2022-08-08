@@ -3,9 +3,10 @@ package menu;
 import reader.Reader;
 import sort.Sort;
 import souvenir.Souvenir;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-
 
 //• Добавлять, редактировать, просматривать всех производителей и всех
 //        сувениров.
@@ -19,7 +20,11 @@ import java.util.Scanner;
 //        • Для каждого года вывести список сувениров, произведенных в этом году.
 //        • Удалить заданного производителя и его сувениры.
 public class Menu {
-    public void menu(List<Souvenir> souvenirs){
+    public void menu(){
+        List<Souvenir> souvenirs = new ArrayList<>();
+        ArrayList<Souvenir> souvenirs1 = (ArrayList<Souvenir>) souvenirs;
+        List<Souvenir> res = new ArrayList<>(souvenirs);
+        Reader reader = new Reader();
         Sort sort = new Sort();
         int input;
         Scanner scanner = new Scanner(System.in);
@@ -41,39 +46,39 @@ public class Menu {
             input = scanner.nextInt();
             switch (input) {
                 case (1):
-                    souvenirs.add(Souvenir.of(scanner.next()));
+                    souvenirs1.add(Souvenir.of(scanner.next()));
                     break;
-
                 case (2):
                     System.out.println("Input index: ");
-                    souvenirs.remove(scanner.nextInt());
+                    souvenirs1.remove(scanner.nextInt());
                     break;
                 case (3):
-                    souvenirs = Reader.getSouvenirFromFile("text.txt");
+                    souvenirs = reader.getSouvenirFromFile("text.txt");
+                    souvenirs1.addAll(souvenirs);
                     break;
                 case (4):
-                    System.out.println(souvenirs);
+                    System.out.println(souvenirs1);
                     break;
                 case (5):
-                    System.out.println( souvenirs = sort.sortByManufacturer(souvenirs,"Салоіндестріз"));
+                    System.out.println( res = sort.sortByManufacturer(souvenirs1,"Салоіндестріз"));
                     break;
                 case (6):
-                    System.out.println( souvenirs = sort.sortByCountryOfManufacturer(souvenirs,"Україна"));
+                    System.out.println( res = sort.sortByCountryOfManufacturer(souvenirs1,"Україна"));
                     break;
                 case (7):
-                    System.out.println( souvenirs = sort.sortByManufacturerAndCost(souvenirs,400));
+                    System.out.println( res = sort.sortByManufacturerAndCost(souvenirs1,400));
                     break;
                 case (8):
-                    System.out.println( souvenirs = sort.sortByManufacturerAndSouvenir(souvenirs));
+                    System.out.println( res = sort.sortByManufacturerAndSouvenir(souvenirs1));
                     break;
                 case (9):
-                    System.out.println( souvenirs = sort.sortBySouvenirAndYear(souvenirs, 2021));
+                    System.out.println( res = sort.sortBySouvenirAndYear(souvenirs1, 2021));
                     break;
                 case (10):
-                    System.out.println( souvenirs = sort.removeManufacturer(souvenirs,"Бибибу"));;
+                    System.out.println( res = sort.removeManufacturer(souvenirs1,"Бибибу"));;
                     break;
                 case (11):
-                    System.out.println( souvenirs = sort.sortByYears(souvenirs));;
+                    System.out.println( res = sort.sortByYears(souvenirs1));;
                     break;
                 case (0):
                     break;

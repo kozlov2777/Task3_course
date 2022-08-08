@@ -10,7 +10,6 @@ package sort;
 //        • Удалить заданного производителя и его сувениры.
 
 import souvenir.Souvenir;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
